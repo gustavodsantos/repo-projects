@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}{{ curso.titulo }}{% endblock title %}
+{% block description %}Página com detalhes do curso {{ curso.titulo }}{% endblock description %}
+{% block body %}
+    <div class="wrapper">
+        <div class="container">
+            <section>
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <h1 class="mt-4 mb-3">{{ curso.titulo }}</h1>
+                        <dl>
+                            <dt>Descrição</dt>
+                            <dd>{{ curso.descricao }}</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <a class="btn-custon" href="{% url 'cursos:indice' %}">Voltar</a>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock body %}

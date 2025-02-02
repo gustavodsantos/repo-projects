@@ -240,3 +240,35 @@ button,
     color: var(--color-primary);
     text-decoration: underline;
 }
+
+.link-cursos {
+    text-decoration: none;
+    color: black;
+}
+
+.link-cursos:focus {
+    outline: 2px solid var(--color-primary);
+}
+
+.link-cursos:hover {
+    color: var(--color-primary);
+}
+
+.btn-custon {
+    color: white;
+    background-color: #0d6efd;
+    border-radius: 5px;
+    padding: 20px 40px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.btn-custon:hover {
+    background-color: #0d6efd;
+    transform: scale(1.05);
+}
+
+.btn-custon:focus {
+    outline: 2px solid var(--color-primary);
+}
