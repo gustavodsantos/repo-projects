@@ -1,0 +1,10 @@
+DEBUG=Flase
+SECRET_KEY=escolha-um-segredo-como-valor-para-o-django
+LANGUAGE_CODE=pt-br
+TIME_ZONE=America/Sao_Paulo
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+ALLOWED_HOSTS=localhost,127.0.0.1
+DOMAIN_NAME=localhost
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres

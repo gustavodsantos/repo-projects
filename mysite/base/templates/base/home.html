@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Gustavo - Desenvolvedor Django{% endblock %}
+
+{% block meta_description %}
+Página pessoal de Gustavo Junior Dos Santos, desenvolvedor Django focado em boas práticas e tecnologia moderna.
+{% endblock %}
+
+{% block body %}
+<header class="text-center py-4 bg-primary text-white">
+    <h1>Gustavo Junior Dos Santos</h1>
+    <p>Desenvolvedor Django</p>
+</header>
+
+<div class="container my-4">
+    <!-- Seção Sobre Mim -->
+    <section id="sobre" class="mb-5">
+        <h1 class="text-center mb-4">Sobre Mim</h1>
+        <p class="text-justify">
+            Sou um profissional em constante desenvolvimento na área de programação, com foco em tecnologias modernas e boas práticas de desenvolvimento. Ao longo da minha trajetória, concluí cursos especializados que me permitiram adquirir conhecimentos sólidos e habilidades práticas em diversas ferramentas e linguagens. Abaixo, destaco minha formação recente:
+        </p>
+
+        <!-- Lista de Formação e Cursos -->
+        <h2 class="text-center mb-4">Formação e Cursos</h2>
+        <ul class="list-unstyled">
+            <li class="mb-4">
+                <h3>Ferramentas do Programador</h3>
+                <ul class="list-unstyled ms-4">
+                    <li>Domínio de comandos básicos do sistema operacional Linux.</li>
+                    <li>Configuração e uso essencial do controlador de versão Git.</li>
+                    <li>Comandos e conceitos fundamentais do Docker para conteinerização.</li>
+                </ul>
+            </li>
+            <li class="mb-4">
+                <h3>Fundamentos da Linguagem Python (DevPro, 07 horas, 30 aulas)</h3>
+                <ul class="list-unstyled ms-4">
+                    <li>Estruturas condicionais, repetição, listas, tuplas, strings e funções.</li>
+                    <li>Tratamento de exceções, classes, métodos, atributos e encapsulamento.</li>
+                    <li>Abordagem prática com exercícios que consolidaram o aprendizado.</li>
+                </ul>
+            </li>
+            <li class="mb-4">
+                <h3>Fundamentos Básicos da Programação (DevPro, 07 horas, 68 aulas)</h3>
+                <ul class="list-unstyled ms-4">
+                    <li>Conceitos de orientação a objetos, modularização, containers e iteração.</li>
+                    <li>Tópicos avançados como composição, herança e boas práticas de desenvolvimento.</li>
+                </ul>
+            </li>
+            <li class="mb-4">
+                <h3>Ferramentas do Dia-a-Dia (07 horas, 64 aulas)</h3>
+                <ul class="list-unstyled ms-4">
+                    <li>Isolamento de ambientes e gestão de dependências com Pipenv.</li>
+                    <li>Publicação de pacotes e testes automatizados com Pytest e Pytest fixtures.</li>
+                    <li>Injeção de dependências para otimização de projetos.</li>
+                </ul>
+            </li>
+            <li class="mb-4">
+                <h3>Django Framework (DevPro, 10 horas, 107 aulas)</h3>
+                <ul class="list-unstyled ms-4">
+                    <li>Configuração de projetos, arquivos estáticos, uploads e migrações.</li>
+                    <li>Customização de usuários, autenticação, autorização e recuperação de senha.</li>
+                    <li>Criação de apps, relacionamentos muitos para um e muitos para muitos.</li>
+                    <li>Testes com banco de dados, integrações simples e uso de templates.</li>
+                    <li>Debug, monitoramento com Sentry e práticas de entrega contínua.</li>
+                </ul>
+            </li>
+            <li class="mb-4">
+                <h3>Complemento de Django: Formulários</h3>
+                <ul class="list-unstyled ms-4">
+                    <li>Criação, edição e manutenção de formulários no Django.</li>
+                    <li>Validação manual de formulários e transição de form para modelo.</li>
+                    <li>Conhecimentos aprofundados em protocolo HTTP e formulários HTML.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Resumo dos Cursos -->
+        <p class="text-justify">
+            Esses cursos, com carga horária total de <strong>38 horas</strong> e mais de <strong>370 aulas</strong>,
+            com certificados emitidos pela <strong>DevPro</strong>, combinados com minha dedicação, me permitem atuar de forma eficiente no desenvolvimento de soluções robustas, escaláveis e bem estruturadas, utilizando ferramentas modernas e boas práticas de programação.
+        </p>
+
+        <!-- Conclusão -->
+        <h2 class="text-center mb-4">Conclusão</h2>
+        <p class="text-justify">
+            Estou preparado para contribuir em projetos desafiadores, aplicando as habilidades técnicas adquiridas e buscando sempre aprimorar meu conhecimento para entregar resultados de alta qualidade.
+        </p>
+    </section>
+</div>
+{% endblock %}

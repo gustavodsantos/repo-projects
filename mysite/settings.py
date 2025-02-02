@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+
 import dj_database_url
 from decouple import Csv, config
 from django.core.management.utils import get_random_secret_key
@@ -23,14 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =config('SECRET_KEY', default=get_random_secret_key())
+SECRET_KEY = config('SECRET_KEY', default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 AUTH_USER_MODEL = 'base.User'
 
-ALLOWED_HOSTS =config('ALLOWED_HOSTS', default='', cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 
 # Application definition
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.parse(
+    'default': dj_database_url.parse(
         config('DATABASE_URL'),
         conn_max_age=600,
         conn_health_checks=True,
@@ -129,11 +130,11 @@ if DEBUG:
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/',
-STATIC_ROOT = BASE_DIR / 'docker/staticfiles',
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'docker/staticfiles'
 
-MEDIA_URL = '/media/',
-MEDIA_ROOT = BASE_DIR / 'docker/mediafiles',
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'docker/mediafiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
