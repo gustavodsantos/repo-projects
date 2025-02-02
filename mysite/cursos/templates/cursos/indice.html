@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Gustavo Dev{% endblock title %}
+{% block description %}Página com detalhes do curso {{ curso.titulo }}{% endblock description %}
+{% block body %}
+    <div class="container">
+        {% for curso in cursos %}
+           <article class="row">
+               <div class="col-md-12">
+                   <h1 class="mt-4 mb-3"><a href="{{ curso.get_absolute_url }}" class="link-cursos">{{ curso.titulo }}</a></h1>
+                   <dl>
+                       <dt>Descrição</dt>
+                       <dd>{{ curso.descricao }}</dd>
+                   </dl>
+               </div>
+           </article>
+        {% endfor %}
+        <div>
+            <br>
+            <a class="btn-custon" href="{% url 'base:home' %}">Voltar</a>
+        </div>
+    </div>
+{% endblock body %}
