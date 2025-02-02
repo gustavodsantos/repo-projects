@@ -1,0 +1,242 @@
+/* style.css */
+
+/* Variáveis globais para cores, fontes e espaçamentos */
+:root {
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+    --color-primary: #8e0000;       /* Vermelho principal */
+    --color-secondary: #00a78e;     /* Verde secundário */
+    --color-tertiary: #f0870b;      /* Amarelo de alerta */
+    --color-text: #293651;         /* Azul escuro */
+    --color-background: #f9f9f9;    /* Fundo mais claro */
+    --color-container-bg: #ffffff;  /* Fundo dos containers */
+    --color-placeholder: #aaa;      /* Cinza para placeholders */
+    --color-border: #ddd;           /* Cinza claro para bordas */
+    --color-border-hover: #bbb;
+    --color-hover: #ffd8d8;         /* Hover claro */
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease-in-out;
+    /* Espaçamentos */
+    --padding-base: 20px;
+    --margin-base: 15px;
+}
+
+/* Reset e estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-size: 16px;
+}
+
+/* Estilos para cabeçalhos */
+h1, h2, h3 {
+    font-family: var(--font-secondary);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: var(--color-primary);
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--color-secondary);
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* Parágrafos e listas */
+p, li {
+    font-size: 1rem;
+}
+
+/* Estilização de links */
+a {
+    text-decoration: none;
+    color: var(--color-secondary);
+    transition: var(--transition);
+}
+
+a:hover,
+a:focus {
+    text-decoration: underline;
+    color: var(--color-primary);
+}
+
+/* Listas não ordenadas */
+ul {
+    list-style: none;
+}
+
+/* Wrapper/Container */
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content {
+    padding: var(--padding-base);
+    max-width: 1000px;
+    margin: var(--margin-base) auto;
+    background: var(--color-container-bg);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+/* Estilização de formulários */
+form {
+    background: var(--color-container-bg);
+    padding: var(--padding-base);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 30px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--color-border);
+    font-size: 1rem;
+    border-radius: 5px;
+    color: var(--color-text);
+    transition: var(--transition);
+}
+
+form input:focus,
+form textarea:focus {
+    border: 1px solid var(--color-primary);
+    background: var(--color-hover);
+    outline: none;
+}
+
+form button {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+form button:hover,
+button:hover,
+.btn:hover {
+    background: var(--color-secondary);
+}
+
+/* Estilização de botões */
+button,
+.btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--color-primary);
+}
+
+.btn-danger {
+    background: #dc3545;
+}
+
+.btn-success {
+    background: var(--color-secondary);
+}
+
+.btn-warning {
+    background: var(--color-tertiary);
+}
+
+/* Item da lista de tarefas */
+.list-group-item {
+    padding: 15px 20px;
+    margin-bottom: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-container-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Paginação */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.pagination .page-link {
+    padding: 8px 12px;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    transition: var(--transition);
+}
+
+.pagination .page-link:hover,
+.pagination .page-link:focus {
+    background: var(--color-hover);
+    color: var(--color-text);
+}
+
+.page-item.active .page-link {
+    background: var(--color-primary);
+    color: var(--color-container-bg);
+    border-color: var(--color-primary);
+}
+
+/* Rodapé */
+.footer {
+    background: #20232a; /* Fundo escuro */
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #cccccc;
+}
+
+.footer p,
+.footer small,
+.footer a {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #00a78e;
+}
+
+.footer a:hover,
+.footer a:focus {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
