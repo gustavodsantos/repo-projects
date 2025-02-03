@@ -1,0 +1,147 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Lista de Tarefas{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+        <div class="content">
+            <div class="container">
+                <!-- Cabeçalho -->
+                <div class="row">
+                    <div class="col-12 col-md-10 offset-md-1">
+                        <h1 class="mt-5 text-center">Lista de Tarefas</h1>
+                    </div>
+                </div>
+                <!-- Fim Cabeçalho -->
+
+                <!-- Formulário de Adicionar Tarefa -->
+                <div class="row">
+                    <div class="col-12 col-md-10 offset-md-1">
+                        <form method="POST" action="{% url 'tarefas:tarefas' %}" class="form-nova-tarefa mt-4">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <textarea id="tarefa" name="nome" class="form-control {% if form.nome.errors %}is-invalid{% endif %}"
+                                          placeholder="Descreva sua tarefa..." required rows="3" maxlength="500"
+                                          aria-label="Nova tarefa"></textarea>
+                                {% if form.nome.errors %}
+                                    <small class="text-danger">
+                                        {% for error in form.nome.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </small>
+                                {% endif %}
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Salvar</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Fim Formulário -->
+
+                <!-- Tarefas Pendentes -->
+                <div class="row mt-5">
+                    <div class="col-12 col-md-10 offset-md-1">
+                        <h2 class="mb-3 text-secondary">Tarefas Pendentes</h2>
+                        {% if tarefas_pendentes %}
+                            <ul class="list-group list-group-flush mb-4">
+                                {% for tarefa in tarefas_pendentes %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <span class="flex-grow-1">{{ tarefa.nome }}</span>
+                                        <div class="btn-group ms-3">
+                                            <!-- Botão Feita -->
+                                            <form action="{% url 'tarefas:marcar_como_feita' tarefa_id=tarefa.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-success btn-sm">
+                                                    <i class="fas fa-check"></i> Feita
+                                                </button>
+                                            </form>
+                                            <!-- Botão Apagar -->
+                                            <form action="{% url 'tarefas:apagar_tarefa' tarefa_id=tarefa.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i> Apagar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    {% if tarefas_pendentes.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?pendentes_page={{ tarefas_pendentes.previous_page_number }}">Anterior</a>
+                                        </li>
+                                    {% endif %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Página {{ tarefas_pendentes.number }} de {{ tarefas_pendentes.paginator.num_pages }}</span>
+                                    </li>
+                                    {% if tarefas_pendentes.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?pendentes_page={{ tarefas_pendentes.next_page_number }}">Próxima</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        {% else %}
+                            <p class="text-muted">Não há tarefas pendentes.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Fim Tarefas Pendentes -->
+
+                <!-- Tarefas Concluídas -->
+                <div class="row mt-5">
+                    <div class="col-12 col-md-10 offset-md-1">
+                        <h2 class="mb-3 text-primary">Tarefas Concluídas</h2>
+                        {% if tarefas_feitas %}
+                            <ul class="list-group list-group-flush mb-4">
+                                {% for tarefa in tarefas_feitas %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <span class="flex-grow-1">{{ tarefa.nome }}</span>
+                                        <div class="btn-group ms-3">
+                                            <!-- Botão Retornar para Pendente -->
+                                            <form action="{% url 'tarefas:marcar_como_pendente' tarefa_id=tarefa.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-undo"></i> Pendente
+                                                </button>
+                                            </form>
+                                            <!-- Botão Apagar -->
+                                            <form action="{% url 'tarefas:apagar_tarefa' tarefa_id=tarefa.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i> Apagar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    {% if tarefas_feitas.has_previous %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?feitas_page={{ tarefas_feitas.previous_page_number }}">Anterior</a>
+                                        </li>
+                                    {% endif %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Página {{ tarefas_feitas.number }} de {{ tarefas_feitas.paginator.num_pages }}</span>
+                                    </li>
+                                    {% if tarefas_feitas.has_next %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?feitas_page={{ tarefas_feitas.next_page_number }}">Próxima</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        {% else %}
+                            <p class="text-muted">Não há tarefas concluídas.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Fim Tarefas Concluídas -->
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
