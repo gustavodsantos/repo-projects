@@ -39,6 +39,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 INSTALLED_APPS = [
     'mysite.base',
     'mysite.cursos',
+    'mysite.tarefas',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
