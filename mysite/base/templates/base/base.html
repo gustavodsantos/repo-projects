@@ -47,6 +47,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'tarefas:tarefas' %}">Lista de Tarefas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'quiz:quiz' %}">Quiz</a>
+                    </li>
                     {% if request.user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link {% if request.resolver_match.url_name == 'password_change' %}active{% endif %}"
@@ -72,7 +75,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if request.resolver_match.url_name == 'base:registrar_usuario' %}active{% endif %}"
+                            <a class="nav-link {% if request.resolver_match.url_name == 'tarefas:registrar_usuario' %}active{% endif %}"
                                href="{% url 'base:registrar_usuario' %}" aria-label="Cadastre-se">
                                 <i class="fa fa-user-plus"></i> Cadastre-se
                             </a>

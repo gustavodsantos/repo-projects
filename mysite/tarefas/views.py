@@ -36,7 +36,7 @@ def tarefas(request):
 
     return render(
         request,
-        'base/tarefas.html',
+        'tarefas/tarefas.html',
         {
             'tarefas_pendentes': tarefas_pendentes,
             'tarefas_feitas': tarefas_feitas,
