@@ -36,7 +36,7 @@ python_files = ["test_*.py", "*_test.py", "testing/python/*.py"]
 
 [tool.ruff]
 line-length=120
-exclude = ['./mysite/base/migrations']
+exclude = ['./mysite/base/migrations', './mysite/cursos/migrations', './mysite/tarefas/migrations', './mysite/quiz/migrations']
 
 [tool.ruff.lint]
 select = ['I', 'F', 'E', 'W', 'PL', 'PT']

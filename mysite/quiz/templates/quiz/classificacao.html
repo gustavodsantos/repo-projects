@@ -1,0 +1,117 @@
+{% extends 'quiz/base.html' %}
+
+{% block body %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <!-- Marca da Aplicação -->
+                <a class="navbar-brand" href="{% url 'base:home' %}" aria-label="Página inicial">Home</a>
+
+                <!-- Botão para Menu Responsivo -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Itens de Navegação -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'cursos:indice' %}">Cursos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'base:gerador_senha' %}">Gerador de senhas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'tarefas:tarefas' %}">Lista de Tarefas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'quiz:quiz' %}">Quiz</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'password_change' %}active{% endif %}"
+                                   href="{% url 'password_change' %}">
+                                    <i class="fa fa-key"></i> Alterar senha
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-danger text-light" href="{% url 'logout' %}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                   aria-label="Sair do sistema">
+                                    <i class="fa fa-sign-out-alt"></i> Sair
+                                </a>
+                                <form id="logout-form" action="{% url 'logout' %}" method="post" class="d-none">
+                                    {% csrf_token %}
+                                </form>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}"
+                                   href="{% url 'login' %}" aria-label="Login">
+                                    <i class="fa fa-sign-in-alt"></i> Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'tarefas:registrar_usuario' %}active{% endif %}"
+                                   href="{% url 'base:registrar_usuario' %}" aria-label="Cadastre-se">
+                                    <i class="fa fa-user-plus"></i> Cadastre-se
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <div class="game-page responsive">
+        <p class="subtitle-quiz">Quiz</p>
+        <p class="subtitle-page">Classificação Geral</p>
+
+        <div class="container game-content">
+
+            <div id="loader" class="loader-spinner"></div>
+
+            <div id="game" class="game-wrapper justify-center flex-column animate-bottom hidden">
+
+                <!-- Resultado do jogador atual -->
+                <div class="game-result">
+                    <h2>Você fez {{ pontos }} pontos e está na</h2>
+                    <h2 class="status-player">{{ posicao }}º</h2>
+                    <h2>posição!</h2>
+                </div>
+
+                <hr class="divider"/>
+
+                <!-- Ranking -->
+                <h3 class="ranking-title">Ranking</h3>
+
+                <!-- Tabela do Ranking -->
+                <table class="ranking-table">
+                    <thead class="ranking-header">
+                        <tr>
+                            <th>Posição</th>
+                            <th>Nome</th>
+                            <th>Pontos</th>
+                        </tr>
+                    </thead>
+                    <tbody class="ranking-body">
+                        {% for aluno in primeiros_alunos_do_ranking %}
+                        <tr class="ranking-row">
+                            <td class="ranking-points">{{ forloop.counter }}º</td>
+                            <td class="ranking-points">{{ aluno.nome }}</td>
+                            <td class="ranking-points">{{ aluno.pontuacao_maxima }} pontos</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <br class="spacing-break"/>
+
+                <!-- Informação adicional sobre o ranking -->
+                <p class="ranking-note accessibility-note">
+                    <strong>Nota:</strong> A pontuação é calculada com base no número de acertos.
+                </p>
+            </div>
+        </div> <!-- End container -->
+    </div>
+{% endblock body %}

@@ -1,0 +1,97 @@
+{% extends 'quiz/base.html' %}
+
+{% block body %}
+    <div class="wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <!-- Marca da Aplicação -->
+                <a class="navbar-brand" href="{% url 'base:home' %}" aria-label="Página inicial">Home</a>
+
+                <!-- Botão para Menu Responsivo -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Itens de Navegação -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'cursos:indice' %}">Cursos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'base:gerador_senha' %}">Gerador de senhas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'tarefas:tarefas' %}">Lista de Tarefas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'quiz:quiz' %}">Quiz</a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'password_change' %}active{% endif %}"
+                                   href="{% url 'password_change' %}">
+                                    <i class="fa fa-key"></i> Alterar senha
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-danger text-light" href="{% url 'logout' %}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                   aria-label="Sair do sistema">
+                                    <i class="fa fa-sign-out-alt"></i> Sair
+                                </a>
+                                <form id="logout-form" action="{% url 'logout' %}" method="post" class="d-none">
+                                    {% csrf_token %}
+                                </form>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}"
+                                   href="{% url 'login' %}" aria-label="Login">
+                                    <i class="fa fa-sign-in-alt"></i> Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'tarefas:registrar_usuario' %}active{% endif %}"
+                                   href="{% url 'base:registrar_usuario' %}" aria-label="Cadastre-se">
+                                    <i class="fa fa-user-plus"></i> Cadastre-se
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="login-page">
+
+        <p class="subtitle-quiz">Quiz</p>
+        <p class="subtitle-page">Gustavo</p>
+        <div class="form">
+
+            {% if form.errors %}
+                <p> Erros:
+                    {{ form.errors }}
+                </p>
+            {% endif %}
+
+            <form class="login-form" method="post" action="/quiz/">
+                {% csrf_token %}
+
+                <label for="id_nome"></label>
+                <input id="id_nome" type="text" name="nome" placeholder="NOME" required="required"
+                       value="{{ form.nome.value }}"/>
+
+                <button type="submit">INICIAR</button>
+            </form>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous">
+
+    </script>
+{% endblock body %}

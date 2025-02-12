@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mysite.base',
     'mysite.cursos',
     'mysite.tarefas',
+    'mysite.quiz',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
