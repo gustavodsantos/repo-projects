@@ -28,8 +28,8 @@ def registrar_usuario(request):
     return render(request, 'registration/registrar_usuario.html', {'form': form})
 
 
-def home(request):
-    return render(request, 'base/home.html')
+def sobre_min(request):
+    return render(request, 'base/sobre_min.html')
 
 
 def gerador_senha(request):
