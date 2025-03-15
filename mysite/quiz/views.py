@@ -1,7 +1,7 @@
 import random
 
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from mysite.quiz.forms import AlunoForm
 from mysite.quiz.models import Aluno, Partida, Pergunta, Resposta
@@ -92,23 +92,16 @@ def classificacao(request):
     if not aluno_id:
         return redirect('quiz:quiz')
 
-    aluno = Aluno.objects.get(id=aluno_id)
+    aluno = get_object_or_404(Aluno, id=aluno_id)
 
-    # Atualizar pontuação total do aluno (se necessário)
+    # Atualizar pontuação apenas se necessário (depende da lógica do método)
     aluno.atualizar_pontuacao_maxima()
 
-    # Obter todos os alunos ordenados por pontuação máxima
-    ranking_completo = Aluno.objects.order_by('-pontuacao_maxima')
+    # Calcular posição do aluno sem carregar todos os registros na memória
+    posicao = Aluno.objects.filter(pontuacao_maxima__gt=aluno.pontuacao_maxima).count() + 1
 
-    # Calcular a posição do aluno no ranking
-    posicao = None
-    for indice, aluno_atual in enumerate(ranking_completo, start=1):
-        if aluno_atual.id == aluno.id:
-            posicao = indice
-            break
-
-    # Obter os 10 melhores para exibição no ranking
-    melhores_alunos = ranking_completo[:10]
+    # Obter os 10 melhores alunos diretamente do banco
+    melhores_alunos = Aluno.objects.order_by('-pontuacao_maxima')[:10]
 
     context = {
         'pontos': aluno.pontuacao_maxima,
